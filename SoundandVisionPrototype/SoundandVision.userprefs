@@ -1,0 +1,19 @@
+﻿<Properties StartupItem="Assembly-CSharp.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\PlayerMoving.cs">
+    <Files>
+      <File FileName="Assets\Standard Assets\Cameras\Scripts\LookatTarget.cs" Line="1" Column="1" />
+      <File FileName="Assets\Standard Assets\CrossPlatformInput\Scripts\MobileControlRig.cs" Line="49" Column="6" />
+      <File FileName="Assets\Standard Assets\Cameras\Scripts\FreeLookCam.cs" Line="1" Column="1" />
+      <File FileName="Assets\CharacterAnimations\TestSMB.cs" Line="42" Column="42" />
+      <File FileName="Assets\ParticleCloudRegulator.cs" Line="9" Column="1" />
+      <File FileName="Assets\CharacterAnimations\Walking Animations\PlayerController.cs" Line="7" Column="20" />
+      <File FileName="Assets\PlayerMoving.cs" Line="43" Column="55" />
+      <File FileName="Assets\Apples.cs" Line="10" Column="19" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>
