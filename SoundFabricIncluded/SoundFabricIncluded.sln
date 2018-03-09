@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundFabricIncluded", "Assembly-CSharp-firstpass.csproj", "{C63B624D-5568-65CD-2196-DD59D79EA782}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundFabricIncluded", "Assembly-CSharp.csproj", "{13924E92-FB28-9299-B307-C5ACF349CA53}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SoundFabricIncluded", "Assembly-CSharp-Editor.csproj", "{36915806-B2B4-5B86-D34D-4DE3CB86CB09}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C63B624D-5568-65CD-2196-DD59D79EA782}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C63B624D-5568-65CD-2196-DD59D79EA782}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C63B624D-5568-65CD-2196-DD59D79EA782}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C63B624D-5568-65CD-2196-DD59D79EA782}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13924E92-FB28-9299-B307-C5ACF349CA53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13924E92-FB28-9299-B307-C5ACF349CA53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13924E92-FB28-9299-B307-C5ACF349CA53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13924E92-FB28-9299-B307-C5ACF349CA53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36915806-B2B4-5B86-D34D-4DE3CB86CB09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36915806-B2B4-5B86-D34D-4DE3CB86CB09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36915806-B2B4-5B86-D34D-4DE3CB86CB09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36915806-B2B4-5B86-D34D-4DE3CB86CB09}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal
