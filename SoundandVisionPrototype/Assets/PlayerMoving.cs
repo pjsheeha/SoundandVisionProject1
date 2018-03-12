@@ -6,6 +6,7 @@ using UnityEngine;
 
 
 public class PlayerMoving : MonoBehaviour {
+	Animator m_animator;
 	public bool obj = false;
 	private int countDown = 0;
 	public GameObject focus;
@@ -49,9 +50,10 @@ public class PlayerMoving : MonoBehaviour {
 		for (int j = 0; j < dictionaryHand.Count; j++) {
 			dictionaryHand [j].GetComponent<SkinnedMeshRenderer> ().enabled = false;
 		}
+		m_animator = GetComponent<Animator> ();
 	}
 	void Update(){
-		print (focus1);
+		print (countDown);
 		for (int i = 0; i<dictionaryEnviro.Count;i++){
 			List<float>fList = new List<float>();
 			for (int h = 0; h < dictionaryEnviro [i].Length; h++) {
@@ -66,19 +68,24 @@ public class PlayerMoving : MonoBehaviour {
 					focus = dictionaryEnviro [k][l];
 					focus1 = dictionaryHand [k];
 					print (focus1);
-					focus1.GetComponent<SkinnedMeshRenderer> ().enabled = true;
-					focus.GetComponent<Renderer> ().enabled = false;
+
+
 				}
 				if (obj) {
-					if (countDown < 10000) {
+					if (countDown > 2500) {
+						focus1.GetComponent<SkinnedMeshRenderer> ().enabled = true;
+						focus.GetComponent<Renderer> ().enabled = false;
+					}
+					if (countDown < 3200) {
 						countDown += 1;
-
+						m_animator.SetBool ("isEating", true);
 
 
 					} else {
 						countDown = 0;
 						focus1.GetComponent<SkinnedMeshRenderer> ().enabled = false;
 						focus.SetActive (false);
+						m_animator.SetBool ("isEating", false);
 						obj = false;
 					}
 				}
