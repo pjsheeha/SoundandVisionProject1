@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{66CFA71D-E05E-8EC5-ADA2-531B7487063E}</ProjectGuid>
+    <ProjectGuid>{B12D8B5A-C096-A068-3184-DC291F564FB7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -109,6 +109,7 @@
      <Compile Include="Assets\Scripts\Controllers\LightingControl.cs" />
      <Compile Include="Assets\Scripts\Fx\Screenshot.cs" />
      <Compile Include="Assets\Scripts\General\FaceCamera.cs" />
+     <Compile Include="Assets\Scripts\General\GrassRenderer.cs" />
      <Compile Include="Assets\Scripts\General\MatchOrientation.cs" />
      <Compile Include="Assets\Scripts\General\RandomRotation.cs" />
      <Compile Include="Assets\Scripts\General\RotationConstraint.cs" />
@@ -165,6 +166,7 @@
      <None Include="Assets\CharacterAnimations\Studio Recorded\leanRightTwo26_02_2018_16_32_26.txt" />
      <None Include="Assets\PostProcessing\Editor Resources\UI\Trackball.shader" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
+     <None Include="Assets\fbx foliage\GrassTerrainShader.shader" />
      <None Include="Assets\Shaders\Matcap-ParticleWithFog.shader" />
      <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonLitOutline.shader" />
      <None Include="Assets\CharacterAnimations\Studio Recorded\leanLeft26_02_2018_16_30_56.txt" />
@@ -226,7 +228,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{4F79EF14-FCBE-4980-CCBC-5A56C679E156}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
+      <Project>{77FFDAE1-ADB4-A219-B53A-A7C02F3A9F15}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
