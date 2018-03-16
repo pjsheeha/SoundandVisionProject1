@@ -33,6 +33,7 @@ TagManager:
   - SkullHand
   - StickHand
   - WrapperHand
+  - FreeLook
   layers:
   - Default
   - TransparentFX

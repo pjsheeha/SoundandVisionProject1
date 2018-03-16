@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+namespace UnityStandardAssets.Cameras
+{
 public class TestSMB : StateMachineBehaviour {
 
 	public float m_Damping = 0.15f;
 	public float speed = 1;
-
+	GameObject freeLook;
 	GameObject player;
 	private readonly int m_HashHorizontalPara = Animator.StringToHash ("Horizontal");
 	private readonly int m_HashVerticalPara = Animator.StringToHash ("Vertical");
@@ -19,6 +20,7 @@ public class TestSMB : StateMachineBehaviour {
 	//}
 	void OnEnable() {
 	 	player = GameObject.FindWithTag("Player");
+		freeLook = GameObject.FindWithTag ("FreeLook");
 	}
 //	 OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
 	override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
@@ -33,6 +35,14 @@ public class TestSMB : StateMachineBehaviour {
 		if (!player.GetComponent<PlayerMoving>().obj) {
 			animator.SetFloat (m_HashHorizontalPara, input.x, m_Damping, Time.deltaTime);
 			animator.SetFloat (m_HashVerticalPara, input.y, m_Damping, Time.deltaTime);
+				if ((vertical > 0)) {
+					Quaternion rotation = Quaternion.Euler (0f, freeLook.GetComponent<FreeLookCam> ().m_LookAngle, 0f);
+					animator.transform.rotation = rotation;
+				}
+				if (vertical < 0){
+					Quaternion rotation = Quaternion.Euler (0f, 180+freeLook.GetComponent<FreeLookCam> ().m_LookAngle, 0f);
+					animator.transform.rotation = rotation;
+				}
 		} else {
 			animator.SetFloat (m_HashHorizontalPara, 0, m_Damping, Time.deltaTime);
 			animator.SetFloat (m_HashVerticalPara, 0, m_Damping, Time.deltaTime);
@@ -60,4 +70,5 @@ public class TestSMB : StateMachineBehaviour {
 	//override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 	//
 	//}
+}
 }
