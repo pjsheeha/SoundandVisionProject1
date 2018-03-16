@@ -7,8 +7,6 @@ using UnityEngine;
 
 public class PlayerMoving : MonoBehaviour {
 	Animator m_animator;
-
-
 	public bool obj = false;
 	private int countDown = 0;
 	public GameObject focus;
@@ -55,7 +53,7 @@ public class PlayerMoving : MonoBehaviour {
 		m_animator = GetComponent<Animator> ();
 	}
 	void Update(){
-		
+		print (countDown);
 		for (int i = 0; i<dictionaryEnviro.Count;i++){
 			List<float>fList = new List<float>();
 			for (int h = 0; h < dictionaryEnviro [i].Length; h++) {
