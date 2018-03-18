@@ -90,11 +90,12 @@ public class PlayerMoving : MonoBehaviour {
 						focus.SetActive (false);
 						m_animator.SetBool ("isEating", false);
 						obj = false;
+						dictionaryEnviroDist.Clear ();
 					}
 				}
 			}
 		}
-		dictionaryEnviroDist.Clear ();
+
 		/*
 		 * 
 		 * if (ook < 1f && Input.GetKeyDown ("space")) {
