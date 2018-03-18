@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class PlayerMoving : MonoBehaviour {
 	Animator m_animator;
+
+
 	public bool obj = false;
 	private int countDown = 0;
 	public GameObject focus;
@@ -63,27 +65,28 @@ public class PlayerMoving : MonoBehaviour {
 		}
 		for (int k = 0; k < dictionaryEnviroDist.Count; k++) {
 			for (int l = 0; l<dictionaryEnviroDist[k].Count;l++){
-			if (dictionaryEnviroDist [k] [l]<1f && Input.GetKeyDown("space")) {
+				if (dictionaryEnviroDist [k] [l]<1f && Input.GetKeyDown("space")) {
 					obj = true;
 					focus = dictionaryEnviro [k][l];
 					focus1 = dictionaryHand [k];
-					print (focus1);
+
 
 
 				}
 				if (obj) {
-					if (countDown > 2500) {
-						focus1.GetComponent<SkinnedMeshRenderer> ().enabled = true;
+					if (countDown >= 250) {
+						focus1.GetComponent<MeshRenderer> ().enabled = true;
 						focus.GetComponent<Renderer> ().enabled = false;
 					}
-					if (countDown < 3200) {
+					else if (countDown < 320) {
 						countDown += 1;
 						m_animator.SetBool ("isEating", true);
 
 
-					} else {
+					} 
+					else if (countDown >= 320) {
 						countDown = 0;
-						focus1.GetComponent<SkinnedMeshRenderer> ().enabled = false;
+						focus1.GetComponent<MeshRenderer> ().enabled = false;
 						focus.SetActive (false);
 						m_animator.SetBool ("isEating", false);
 						obj = false;
@@ -121,7 +124,7 @@ public class PlayerMoving : MonoBehaviour {
 	}
 
 }
-	/*
+/*
 	public bool obj = false;
 
 	public GameObject[] listEnviro;
@@ -231,9 +234,9 @@ public class PlayerMoving : MonoBehaviour {
 */	
 
 /*
- * 
- * 
- * using System.Collections;
+* 
+* 
+* using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -352,7 +355,7 @@ public class PlayerMoving : MonoBehaviour {
 		han.listHand.Add (wrapperHand);
 		appleHand.GetComponent<Renderer> ().enabled = false;
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
 
@@ -385,7 +388,7 @@ public class PlayerMoving : MonoBehaviour {
 		}
 	}
 }
-	
+
 
 
 
