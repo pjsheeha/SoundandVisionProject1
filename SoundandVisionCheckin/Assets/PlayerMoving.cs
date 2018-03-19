@@ -55,7 +55,7 @@ public class PlayerMoving : MonoBehaviour {
 		m_animator = GetComponent<Animator> ();
 	}
 	void Update(){
-		
+		print (countDown);
 		for (int i = 0; i<dictionaryEnviro.Count;i++){
 			
 			List<float>fList = new List<float>();
@@ -68,7 +68,7 @@ public class PlayerMoving : MonoBehaviour {
 		}
 		for (int k = 0; k < dictionaryEnviroDist.Count; k++) {
 			for (int l = 0; l<dictionaryEnviroDist[k].Count;l++){
-				print (dictionaryEnviroDist [k] [l]);
+				
 				if (dictionaryEnviroDist [k] [l]<1f && dictionaryEnviroDist [k] [l]!=0 && Input.GetKeyDown("space")) {
 					obj = true;
 					focus = dictionaryEnviro [k][l];
@@ -79,16 +79,16 @@ public class PlayerMoving : MonoBehaviour {
 				}
 				if (obj) {
 					countDown += 1;
-					if (countDown == 250) {
+					if (countDown == 142) {
 						focus1.GetComponent<SkinnedMeshRenderer> ().enabled = true;
 						focus.GetComponent<MeshRenderer> ().enabled = false;
 					}
-					if (countDown < 260 && countDown > 0) {
+					if (countDown < 180 && countDown > 0) {
 						
 						m_animator.SetBool ("isEating", true);
 
 
-					} if (countDown >= 260) {
+					} if (countDown >= 180) {
 						m_animator.SetBool ("isEating", false);
 						focus1.GetComponent<SkinnedMeshRenderer> ().enabled = false;
 						focus.SetActive (false);
