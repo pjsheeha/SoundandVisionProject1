@@ -55,17 +55,21 @@ public class PlayerMoving : MonoBehaviour {
 		m_animator = GetComponent<Animator> ();
 	}
 	void Update(){
-		print (countDown);
+		
 		for (int i = 0; i<dictionaryEnviro.Count;i++){
+			
 			List<float>fList = new List<float>();
 			for (int h = 0; h < dictionaryEnviro [i].Length; h++) {
-				fList.Add (Vector3.Distance (dictionaryEnviro [i] [h].transform.position, transform.position));
+				if (dictionaryEnviro [i] [h].activeSelf == true) {
+					fList.Add (Vector3.Distance (dictionaryEnviro [i] [h].transform.position, transform.position));
+				}
 			}
 			dictionaryEnviroDist.Add (i,fList);
 		}
 		for (int k = 0; k < dictionaryEnviroDist.Count; k++) {
 			for (int l = 0; l<dictionaryEnviroDist[k].Count;l++){
-				if (dictionaryEnviroDist [k] [l]<1f && Input.GetKeyDown("space")) {
+				print (dictionaryEnviroDist [k] [l]);
+				if (dictionaryEnviroDist [k] [l]<1f && dictionaryEnviroDist [k] [l]!=0 && Input.GetKeyDown("space")) {
 					obj = true;
 					focus = dictionaryEnviro [k][l];
 					focus1 = dictionaryHand [k];
@@ -74,27 +78,33 @@ public class PlayerMoving : MonoBehaviour {
 
 				}
 				if (obj) {
-					if (countDown >= 250) {
-						focus1.GetComponent<MeshRenderer> ().enabled = true;
-						focus.GetComponent<Renderer> ().enabled = false;
+					countDown += 1;
+					if (countDown == 250) {
+						focus1.GetComponent<SkinnedMeshRenderer> ().enabled = true;
+						focus.GetComponent<MeshRenderer> ().enabled = false;
 					}
-					else if (countDown < 320) {
-						countDown += 1;
+					if (countDown < 260 && countDown > 0) {
+						
 						m_animator.SetBool ("isEating", true);
 
 
-					} 
-					else if (countDown >= 320) {
-						countDown = 0;
-						focus1.GetComponent<MeshRenderer> ().enabled = false;
-						focus.SetActive (false);
+					} if (countDown >= 260) {
 						m_animator.SetBool ("isEating", false);
+						focus1.GetComponent<SkinnedMeshRenderer> ().enabled = false;
+						focus.SetActive (false);
+
 						obj = false;
-						dictionaryEnviroDist.Clear ();
+						countDown = 0;
+
+
+
 					}
+				} else {
+					dictionaryEnviroDist [k] [l] = 0;
 				}
 			}
 		}
+		dictionaryEnviroDist.Clear ();
 
 		/*
 		 * 

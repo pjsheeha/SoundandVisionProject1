@@ -9,7 +9,7 @@
       <File FileName="Assets\Grass\GrassTerrainShader.shader" Line="1" Column="1" />
       <File FileName="Assets\Prefabs\GrassGeometryShader.shader" Line="1" Column="1" />
       <File FileName="Assets\Standard Assets\Cameras\Scripts\FreeLookCam.cs" Line="1" Column="1" />
-      <File FileName="Assets\PlayerMoving.cs" Line="93" Column="37" />
+      <File FileName="Assets\PlayerMoving.cs" Line="91" Column="27" />
       <File FileName="Assets\CharacterAnimations\Studio Recorded\TestSMB.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>

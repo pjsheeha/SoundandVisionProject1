@@ -1,0 +1,15 @@
+Read me! 
+
+Import this whole folder and the terrain should work. Just put the prefab in the scene. 
+
+I figured out how to put wind on my grass and foliage: https://www.youtube.com/watch?v=1QbpCZuGe7M 
+
+There are a few hills but not enough to obsure the camera, just put a ridgid body on the player character and lock all directions of rotation. 
+
+It is a large map, but you can concentrate it by making the fog barrier closer in on the map. 
+
+feel free to add more trees and foliage. 
+
+Each location is marked by a cube.
+
+
