@@ -52,6 +52,7 @@
      <Compile Include="Assets\CharacterAnimations\Walking Animations\PlayerController.cs" />
      <Compile Include="Assets\EmptyClass.cs" />
      <Compile Include="Assets\ParticleCloudRegulator.cs" />
+     <Compile Include="Assets\PlaySoundAtClip.cs" />
      <Compile Include="Assets\PlayerMoving.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\GetSetAttribute.cs" />
      <Compile Include="Assets\PostProcessing\Runtime\Attributes\MinAttribute.cs" />
@@ -115,6 +116,7 @@
      <Compile Include="Assets\Scripts\General\RandomRotation.cs" />
      <Compile Include="Assets\Scripts\General\RotationConstraint.cs" />
      <Compile Include="Assets\Scripts\General\Rotator.cs" />
+     <Compile Include="Assets\footstep.cs" />
      <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
      <None Include="Assets\Standard Assets\Effects\GlassRefraction\Shaders\GlassStainedBumpDistort.shader" />
      <None Include="Assets\Standard Assets\Effects\ToonShading\Shaders\ToonBasic.shader" />
@@ -129,7 +131,7 @@
      <None Include="Assets\PostProcessing\Resources\Shaders\LutGen.shader" />
      <None Include="Assets\PostProcessing\Editor Resources\Monitors\HistogramRender.shader" />
      <None Include="Assets\CharacterAnimations\Studio Recorded\friendThree26_02_2018_16_35_55.txt" />
-     <None Include="Assets\Sounds\Acorn sounds\Acorn.txt" />
+     <None Include="Assets\Sounds\Acornsounds\Acorn.txt" />
      <None Include="Assets\Resources\Internal-DeferredShadingCustom.shader" />
      <None Include="Assets\Prefabs\GrassGeometryShader.shader" />
      <None Include="Assets\PostProcessing\Editor Resources\UI\CurveBackground.shader" />
@@ -201,6 +203,7 @@
      <None Include="Assets\CharacterAnimations\Studio Recorded\eatingoffthefloor101_03_2018_20_09_41.txt" />
      <None Include="Assets\Animation\Raw Mocap Data\Animations\_CompleteAnimationList.txt" />
      <None Include="Assets\materials\Shaders\Toony-Lighted.shader" />
+     <None Include="Assets\Sounds\Apple.txt" />
      <None Include="Assets\PostProcessing\Resources\Shaders\Bloom.shader" />
      <None Include="Assets\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
      <None Include="Assets\TERRAIN AND PREFAB\NatureStarterKit2\Standard Assets\Effects\Projectors\Shaders\ProjectorMultiply.shader" />
@@ -212,6 +215,7 @@
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\WaterInclude.cginc" />
      <None Include="Assets\PostProcessing\Resources\Shaders\ColorGrading.cginc" />
      <None Include="Assets\Standard Assets\Environment\Water\Water4\Shaders\FXWater4Advanced.shader" />
+     <None Include="Assets\Sounds\Applesounds\Apple.txt" />
      <None Include="Assets\Shaders\Matcap-SoftParticleWithFog.shader" />
      <None Include="Assets\NatureStarterKit2\Standard Assets\Effects\TessellationShaders\Shaders\BumpedSpecularDisplacement.shader" />
      <None Include="Assets\PostProcessing\Resources\Shaders\AmbientOcclusion.cginc" />
@@ -220,7 +224,7 @@
      <None Include="Assets\PostProcessing\Editor Resources\Monitors\WaveformCompute.compute" />
      <None Include="Assets\TERRAIN AND PREFAB\NatureStarterKit2\info.txt" />
      <None Include="Assets\CharacterAnimations\Studio Recorded\flap01_03_2018_20_08_09.txt" />
-     <None Include="Assets\Sounds\Skull sounds\Skull.txt" />
+     <None Include="Assets\Sounds\Skullsounds\Skull.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity2/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

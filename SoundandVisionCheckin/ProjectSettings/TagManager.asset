@@ -33,6 +33,10 @@ TagManager:
   - SkullHand
   - StickHand
   - WrapperHand
+  - FreeLook
+  - rustle
+  - terrain
+  - point
   layers:
   - Default
   - TransparentFX

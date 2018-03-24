@@ -1,24 +1,60 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
-
-
+using UnityEngine.PostProcessing;
 
 public class PlayerMoving : MonoBehaviour {
 	Animator m_animator;
-
-
+	public PostProcessingProfile ppProfile;
+	public AudioSource appleIcon;
+	public BloomModel.Settings bloomSettings;
+	public GameObject icon;
+	public ParticleSystem iconParticles;
+	public GameObject trip1;
+	public float startSize = 0;
+	public GameObject trip1A;
+	public GameObject trip1B;
+	public AudioMixer mastermixer;
+	public float value;
+	public bool result;
+	public string currState = "";
 	public bool obj = false;
 	private int countDown = 0;
+	ParticleSystem.MainModule sizeMod;
 	public GameObject focus;
+	private GameObject rustle;
 	public GameObject focus1;
 	Dictionary<int,GameObject[]> dictionaryEnviro=  new Dictionary<int,GameObject[]>();
 	Dictionary<int,List<float>> dictionaryEnviroDist = new Dictionary<int,List<float>>();
 	Dictionary<int,GameObject> dictionaryHand=  new Dictionary<int,GameObject>();
 	public List<float>fList = new List<float>();
+	public List<bool>boolList = new List<bool>();
+	public List<bool> otherList = new List<bool> ();
 	void Start(){
 		//Objects in environment
+		iconParticles = icon.GetComponent<ParticleSystem>();
+		sizeMod = iconParticles.main;
+		print(sizeMod.startSize.constant);
+		sizeMod.startSize = new ParticleSystem.MinMaxCurve(5f);
+		startSize = sizeMod.startSize.constantMax;
+		var col = iconParticles.colorOverLifetime;
+		col.enabled = true;
+		Gradient grad = new Gradient ();
+		grad.SetKeys( new GradientColorKey[] {new GradientColorKey(Color.blue,0.0f), new GradientColorKey(Color.red, 0.0f)}, new GradientAlphaKey[] { new GradientAlphaKey(1.0f,1.0f), new GradientAlphaKey(1.0f,1.0f)});
+
+		col.color = grad;
+		bloomSettings = ppProfile.bloom.settings;
+		bloomSettings.bloom.intensity = 11f;
+		bloomSettings.bloom.softKnee = 0f;
+		mastermixer.SetFloat ("volRustle", 6f);
+		ppProfile.bloom.settings = bloomSettings;
+		trip1.SetActive (false);
+		trip1A.SetActive (false);
+
+		result= mastermixer.GetFloat ("volRustle", out value);
+		rustle = GameObject.FindGameObjectWithTag("rustle");
 		dictionaryEnviro.Add (1,GameObject.FindGameObjectsWithTag("Acorn"));
 		dictionaryEnviro.Add (2,GameObject.FindGameObjectsWithTag("Apple"));
 		dictionaryEnviro.Add (3,GameObject.FindGameObjectsWithTag("Ax"));
@@ -52,10 +88,15 @@ public class PlayerMoving : MonoBehaviour {
 		for (int j = 0; j < dictionaryHand.Count; j++) {
 			dictionaryHand [j].GetComponent<SkinnedMeshRenderer> ().enabled = false;
 		}
+		for (int j = 0; j < dictionaryHand.Count; j++) {
+			boolList.Add( false);
+		}
+		for (int j = 0; j < dictionaryHand.Count; j++) {
+			otherList.Add( true);
+		}
 		m_animator = GetComponent<Animator> ();
 	}
 	void Update(){
-		print (countDown);
 		for (int i = 0; i<dictionaryEnviro.Count;i++){
 			
 			List<float>fList = new List<float>();
@@ -68,8 +109,7 @@ public class PlayerMoving : MonoBehaviour {
 		}
 		for (int k = 0; k < dictionaryEnviroDist.Count; k++) {
 			for (int l = 0; l<dictionaryEnviroDist[k].Count;l++){
-				
-				if (dictionaryEnviroDist [k] [l]<1f && dictionaryEnviroDist [k] [l]!=0 && Input.GetKeyDown("space")) {
+				if (dictionaryEnviroDist [k] [l]<1f && Input.GetKeyDown("space") && currState == "") {
 					obj = true;
 					focus = dictionaryEnviro [k][l];
 					focus1 = dictionaryHand [k];
@@ -77,64 +117,139 @@ public class PlayerMoving : MonoBehaviour {
 
 
 				}
-				if (obj) {
-					countDown += 1;
-					if (countDown == 142) {
-						focus1.GetComponent<SkinnedMeshRenderer> ().enabled = true;
-						focus.GetComponent<MeshRenderer> ().enabled = false;
-					}
-					if (countDown < 180 && countDown > 0) {
-						
-						m_animator.SetBool ("isEating", true);
-
-
-					} if (countDown >= 180) {
-						m_animator.SetBool ("isEating", false);
-						focus1.GetComponent<SkinnedMeshRenderer> ().enabled = false;
-						focus.SetActive (false);
-
-						obj = false;
-						countDown = 0;
-
-
-
-					}
-				} else {
-					dictionaryEnviroDist [k] [l] = 0;
-				}
 			}
 		}
+		if (obj) {
+			countDown += 1;
+			if (countDown == 142) {
+				focus1.GetComponent<SkinnedMeshRenderer> ().enabled = true;
+				focus.GetComponent<MeshRenderer> ().enabled = false;
+			}
+			if (countDown < 180 && countDown > 0) {
+
+				m_animator.SetBool ("isEating", true);
+
+
+			} if (countDown >= 180) {
+				m_animator.SetBool ("isEating", false);
+				focus1.GetComponent<SkinnedMeshRenderer> ().enabled = false;
+				focus.SetActive (false);
+
+				obj = false;
+				countDown = 0;
+				currState = focus.tag;
+
+
+			}
+		} 
 		dictionaryEnviroDist.Clear ();
 
-		/*
-		 * 
-		 * if (ook < 1f && Input.GetKeyDown ("space")) {
-					print (ook);
-					obj = true;
-					focus = envir.listEnviro[o][i];
-					han.listHand[o].GetComponent<Renderer> ().enabled = true;
-					focus.GetComponent<Renderer> ().enabled = false;
-				}
-				if (obj) {
+		if (currState == "Apple") {
+			if ( value > -80.0f) {
+				value -= .1f;
+				if (sizeMod.startSize.constantMin >= 0f) {
+					startSize -= .01f;
+					sizeMod.startSize = new ParticleSystem.MinMaxCurve(startSize);
 
-					if (countDown < 100) {
-						countDown += 1;
-						print (countDown);
-					} else {
-						countDown = 0;
-						obj = false;
-						focus.SetActive (false);
-						han.listHand[o].GetComponent<Renderer> ().enabled = false;
+				}
+				if (sizeMod.startSize.constantMin < 0f) {
+					startSize = 0f;
+					sizeMod.startSize = new ParticleSystem.MinMaxCurve(startSize);
+				}
+			}
+			mastermixer.SetFloat ("volRustle", value);
+			if (value < -30.0f) {
+				boolList [0] = true;
+				otherList [0] = false;
+				value = -58f;
+
+
+			}
+			if (!otherList[0] && boolList [0] == true) {
+				trip1.SetActive (true);
+				AudioSource audioSource = trip1.GetComponent<AudioSource> ();
+				AudioSource audioSource2 = trip1A.GetComponent<AudioSource>();
+				if (audioSource.time > 1) {
+					trip1A.SetActive (true);
+
+
+
+				}
+				if (audioSource2.isPlaying){
+					bloomSettings.bloom.intensity += .1f;
+					bloomSettings.bloom.softKnee += .001f;
+
+					if (audioSource.time % 5 == 0) {
+						AudioSource audioSource3 = trip1B.GetComponent<AudioSource> ();
+						audioSource3.Play();
+						Debug.Log("D"+audioSource3.isPlaying);
 					}
 				}
+				if (!audioSource2.isPlaying && bloomSettings.bloom.intensity > 11 && value < 6f){
+					bloomSettings.bloom.intensity -= 1f;
+					bloomSettings.bloom.softKnee -= .01f;
+					if (bloomSettings.bloom.softKnee < 0f) {
+						bloomSettings.bloom.softKnee = 0f;
+					}
+						currState = "";
+						trip1.SetActive (false);
+						trip1A.SetActive (false);
+						trip1B.SetActive (false);
 
-		 * 
-		 * 
-		 * 
-		 */
+						if (value < 6f) {
+							value += .1f;
+							mastermixer.SetFloat ("volRustle", value);
+							appleIcon.volume = 0;
+
+
+						}
+	
+
+					
+				}
+
+				ppProfile.bloom.settings = bloomSettings;
+			
+
+
+			}
 	}
+		if (currState == ""){
+			GameObject fogGenerator = GameObject.FindGameObjectWithTag ("point");
+			float dist = Vector3.Distance (fogGenerator.transform.position, transform.position);
+			print (dist);
+			if (dist > 210) {
+				bloomSettings.bloom.intensity = (dist-210)*4;
+				bloomSettings.bloom.softKnee = (dist-210);
+
+
+			}
+			if (dist <= 210) {
+				bloomSettings.bloom.intensity = 0;
+				bloomSettings.bloom.softKnee = 0;
+			}
+
+			if (dist > 225) {
+				if ((transform.localEulerAngles.y > 315 && transform.localEulerAngles.y <= 360) || (transform.localEulerAngles.y >= 0 && transform.localEulerAngles.y < 45) &&transform.position.y > GameObject.Find("north").transform.position.y ){
+					transform.position = GameObject.Find ("south").transform.position;
+				}
+				if ((transform.localEulerAngles.y > 45 && transform.localEulerAngles.y <= 90) || (transform.localEulerAngles.y >= 90 && transform.localEulerAngles.y < 135) &&transform.position.y > GameObject.Find("east").transform.position.z ){
+					transform.position = GameObject.Find ("west").transform.position;
+				}
+				if ((transform.localEulerAngles.y > 135 && transform.localEulerAngles.y <= 180) || (transform.localEulerAngles.y >= 180 && transform.localEulerAngles.y < 225) &&transform.position.y > GameObject.Find("south").transform.position.y ){
+					transform.position = GameObject.Find ("north").transform.position;
+				}
+				if ((transform.localEulerAngles.y > 225 && transform.localEulerAngles.y <= 270) || (transform.localEulerAngles.y >= 270 && transform.localEulerAngles.y < 315) &&transform.position.y > GameObject.Find("west").transform.position.z ){
+					transform.position = GameObject.Find ("east").transform.position;
+				}
+			}
+			ppProfile.bloom.settings = bloomSettings;
+		}
 
 }
+}
+
+
 /*
 	public bool obj = false;
 
